@@ -1,0 +1,32 @@
+.Section{
+    border: 1px solid #dddddc;
+    border-radius: 3px;
+    margin: 20px 0px;
+}
+
+.sections-container{
+    width: 33%;
+    float: left;
+    margin-left: 5px;
+    height: 400px;
+    border: 1px solid #dddddc;
+    border-radius: 3px;
+    overflow: scroll;
+}
+
+.header_section{
+    background: rgb(197, 197, 197);
+    color: white;
+    padding: 10px;
+}
+
+.content_section{
+    min-height:300px;
+}
+
+.item{
+    height: 100px;
+    border: 1px solid #6b6464;
+    border-radius: 4px;
+    padding: 5px;
+}

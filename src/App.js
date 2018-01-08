@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Board from './components/Board';
 
 class App extends Component {
   render() {
@@ -8,6 +9,7 @@ class App extends Component {
           <header>
           </header>
           <main>
+            <Board />
           </main>
         </div>
     )
