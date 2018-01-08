@@ -4,8 +4,8 @@ REQUIREMENTS:
   
 INSTALLATION
 
-1/ bundle install
-2/ npm install
+1. bundle install
+2. npm install
 
 LAUNCH APP
 Server =>
