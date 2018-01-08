@@ -1,14 +1,14 @@
 Demo App: 51.15.176.205:3000
 
 Stack:
-Backend: Ruby (sinatra framework)
-Frontend: ReactJS
+- Backend: Ruby (sinatra framework)
+- Frontend: ReactJS
 
 Requirements:
 
-node v6.10.3
-react 16.2.0
-ruby 2.5.0 
+-node v6.10.3
+-react 16.2.0
+-ruby 2.5.0 
 
 How to install?
 1. download the app => git clone https://github.com/maxjean/my_app
@@ -24,6 +24,7 @@ Launch Frontend App (reactJS)
 => npm start
 
 More details:
+
 API access: localhost:4246
 Web Front access: localhost:3000
 WebSocket url: localhost:4247
