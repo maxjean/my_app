@@ -1,4 +1,4 @@
-Demo App: 51.15.176.205:3000
+Demo App: http://51.15.176.205:3000
 
 Stack:
 - Backend: Ruby (sinatra framework)
