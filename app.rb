@@ -37,6 +37,38 @@ EM.run do
       render :html, :index
     end
 
+    get '/sectionsDatas' do
+      content_type :json
+      datas = [
+          {
+              :id => 1,
+              :name => 'À rencontrer',
+              :items => [
+                  {
+                      :id => 1,
+                      :name => 'Steve Jobs'
+                  },
+                  {
+                      :id => 2,
+                      :name => 'James David'
+                  },
+                  {
+                      :id => 3,
+                      :name => 'Marc Ludovic '
+                  },
+                  {
+                      :id => 4,
+                      :name => 'John Newton'
+                  }
+              ]
+          },
+          {
+              :id => 2,
+              :name => 'Entretien',
+              :items => []
+          }
+      ].to_json
+    end
 
   end
 
