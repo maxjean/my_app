@@ -6,17 +6,22 @@ class Item extends Component {
         super(props);
         this.state = {
 
-        };
-    };
+        }
+    }
+
+    drag = (ev,itemDatas,initialSectionId) => {
+        ev.dataTransfer.dropEffect = "move";
+        ev.dataTransfer.setData("text/plain", JSON.stringify({itemDatas,initialSectionId,isItem:true}));
+    }
 
     render() {
-        const { item,key } = this.props;
+        const { item,key,initialSectionId } = this.props;
         return (
-            <div className="item" key={key}>
+            <div className="item" key={key} draggable="true" onDragStart={(e) => this.drag(e,item,initialSectionId)}>
                 {item.name}
             </div>
         );
-    };
+    }
 };
 
 class Items extends Component {
@@ -24,7 +29,7 @@ class Items extends Component {
         super(props);
         this.state = {
             datas:[]
-        };
+        }
     };
 
     render() {
@@ -45,12 +50,24 @@ class Section extends Component {
         super(props);
         this.state = {
             section:props.section,
+            sock:props.sock,
             key:props.key
         };
 
+        this.drop = this.drop.bind(this);
+    }
+
+    drop = (e) => {
+        e.preventDefault();
+        const data = e.dataTransfer.getData('text/plain');
+        let _data = JSON.parse(data);
+        _data['newSectionId'] = this.props.section.id;
+        this.props.sock.send(JSON.stringify(_data));
     };
 
-
+    allowDrop = (ev) => {
+        ev.preventDefault();
+    };
 
     render() {
         const { section,key } = this.state;
@@ -61,12 +78,12 @@ class Section extends Component {
                         {section.name} ({section.items.length})
                     </div>
                 </div>
-                <div className="row content_section" key={key}>
+                <div className="row content_section" key={key} onDrop={this.drop} onDragOver={this.allowDrop}>
                     <Items items={section.items} initialSectionId={section.id}/>
                 </div>
             </div>
         );
-    };
+    }
 };
 
 export default Section;

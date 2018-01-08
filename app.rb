@@ -15,11 +15,13 @@ EM.run do
     set :protection, false
     #set :views, settings.root + "/views"
     #set :root, 'lib/app'
+    @clients = [];
 
-    #start websocket server including EventMachine
+    #start websocket server inlcuding EventMachine
     EM::WebSocket.start(:host => '0.0.0.0', :port => '4247') do |ws| #we fixe our websocket connection and instanciate it with "ws"
       ws.onopen do |handshake|  #Event=open, occurs when socket connection is established
         puts "WS OPEN"
+        @clients.push(ws)
       end
 
       ws.onclose do   #Event=close, occurs when socket connection is closed
@@ -29,7 +31,10 @@ EM.run do
 
       ws.onmessage do |msg| #Event=message, occurs when client receives data from server
         puts "message sending...: #{ws}"
-        ws.send msg
+        @clients.map do |c|
+          puts "Received Message: #{msg}"
+          c.send msg
+        end
       end
     end
 

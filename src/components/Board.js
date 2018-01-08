@@ -4,10 +4,35 @@ import Section from './Section';
 class Board extends Component {
     constructor(props){
         super(props);
+        let self = this;
         this.state = {
             sections_datas:[],
             loading:true
         };
+
+        const sock = new WebSocket('ws://127.0.0.1:4247');
+
+        sock.onopen = function() {
+            console.log('open');
+        };
+
+        sock.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            let { sections_datas } = self.state;
+            if(data && data.isItem) {
+                let oldIndex = sections_datas.findIndex(function(x){return x.id===data.initialSectionId});
+                let index = sections_datas.findIndex(function(x){return x.id===data.newSectionId});
+                sections_datas[oldIndex].items = sections_datas[oldIndex].items.filter(el => el.id !== data.itemDatas.id); //TODO FETCH BY ID TO GET OBJECT CONTENT BY ID FROM SERVER
+                sections_datas[index].items = [...sections_datas[index].items,data.itemDatas]; //TODO FETCH BY ID TO GET OBJECT CONTENT BY ID FROM SERVER
+                self.setState({sections_datas});
+            };
+        };
+
+        sock.onclose = function() {
+            console.log('close');
+        };
+
+        this.state.sock = sock;
     }
 
     componentDidMount(){
@@ -21,7 +46,7 @@ class Board extends Component {
     };
 
     render() {
-        const { sections_datas } = this.state;
+        const { sections_datas, sock } = this.state;
         let content;
 
         if (this.state.loading) {
@@ -29,7 +54,7 @@ class Board extends Component {
         } else {
             content = sections_datas.map((section,index) =>(
                 <div className="sections-container">
-                    <Section section={section} key={index}/>
+                    <Section section={section} sock={sock} key={index}/>
                 </div>
             ));
         };
