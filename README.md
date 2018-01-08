@@ -12,7 +12,7 @@ Requirements:
 
 How to install?
 1. download the app => git clone https://github.com/maxjean/my_app
-2. Go to the root directory of the application => cd trello_app
+2. Go to the root directory of the application => cd my_app
 3. gem install bundler (if not installed in your system)
 4. bundle install (installation for ruby packages)
 5. npm install (installation for node packages)
