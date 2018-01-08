@@ -12,7 +12,7 @@ class Item extends Component {
     drag = (ev,itemDatas,initialSectionId) => {
         ev.dataTransfer.dropEffect = "move";
         ev.dataTransfer.setData("text/plain", JSON.stringify({itemDatas,initialSectionId,isItem:true}));
-    }
+    };
 
     render() {
         const { item,key,initialSectionId } = this.props;
@@ -21,7 +21,7 @@ class Item extends Component {
                 {item.name}
             </div>
         );
-    }
+    };
 };
 
 class Items extends Component {
@@ -55,7 +55,7 @@ class Section extends Component {
         };
 
         this.drop = this.drop.bind(this);
-    }
+    };
 
     drop = (e) => {
         e.preventDefault();
@@ -83,7 +83,7 @@ class Section extends Component {
                 </div>
             </div>
         );
-    }
+    };
 };
 
 export default Section;

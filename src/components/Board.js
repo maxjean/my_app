@@ -22,8 +22,8 @@ class Board extends Component {
             if(data && data.isItem) {
                 let oldIndex = sections_datas.findIndex(function(x){return x.id===data.initialSectionId});
                 let index = sections_datas.findIndex(function(x){return x.id===data.newSectionId});
-                sections_datas[oldIndex].items = sections_datas[oldIndex].items.filter(el => el.id !== data.itemDatas.id); //TODO FETCH BY ID TO GET OBJECT CONTENT BY ID FROM SERVER
-                sections_datas[index].items = [...sections_datas[index].items,data.itemDatas]; //TODO FETCH BY ID TO GET OBJECT CONTENT BY ID FROM SERVER
+                sections_datas[oldIndex].items = sections_datas[oldIndex].items.filter(el => el.id !== data.itemDatas.id);
+                sections_datas[index].items = [...sections_datas[index].items,data.itemDatas];
                 self.setState({sections_datas});
             };
         };
