@@ -11,5 +11,5 @@ LAUNCH APP
 Server =>
 ruby app.rb
 
-React Front =>
+LAUNCH React Front =>
 npm start
